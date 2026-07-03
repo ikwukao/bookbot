@@ -1,3 +1,5 @@
+from stats import get_num_words
+
 def get_book_text(filepath):
     with open(filepath, "r") as file:
         return file.read()
