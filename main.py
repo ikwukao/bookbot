@@ -10,26 +10,32 @@ def get_book_text(filepath):
         return file.read()
 
 
-def main():
-    text = get_book_text("books/frankenstein.txt")
+def print_report(book_path, word_count, sorted_chars):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
 
-    num_words = get_num_words(text)
-    print(f"{num_words} words found in the document")
+    for char, count in sorted_chars:
+        if char.isalpha():
+            print(f"{char}: {count}")
+
+    print("============= END ===============")
+
+
+def main():
+    book_path = "books/frankenstein.txt"
+
+    text = get_book_text(book_path)
+
+    word_count = get_num_words(text)
 
     char_count = get_num_chars(text)
 
     sorted_chars = chars_dict_to_sorted_list(char_count)
 
-    print(sorted_chars)
+    print_report(book_path, word_count, sorted_chars)
 
 
 main()
-
-
-# Read number of words in a file
-with open("books/frankenstein.txt", "r", encoding="utf-8") as file:
-    content = file.read()
-    words = content.split()
-    word_count = len(words)
-
-print(f"Found {word_count} total words")
